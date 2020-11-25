@@ -57,7 +57,7 @@ def runGame():
     Game: bool = True
     while Game:
         for i in pygame.event.get():
-            if i.type == pygame.QUIT: #or mistake_counter == 6
+            if i.type == pygame.QUIT: #or mistake_counter == 6  # END GAME
                 pygame.quit()
                 quit()
 
