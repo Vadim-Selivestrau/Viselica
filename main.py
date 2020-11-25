@@ -2,6 +2,7 @@ import pygame
 import random
 
 from words import words
+
 pygame.init()  # initialisation in Windows and Linux, Mac
 # from game_object import GameObject
 # from text_object import TextObject
@@ -11,6 +12,9 @@ sc_hight = 420
 sc = pygame.display.set_mode((sc_width, sc_hight))
 WHITE = (255, 255, 255)
 GRAY = (80, 80, 80)
+CYAN = (13, 246, 205)
+
+
 # work with word
 def choice_word(words):
     word = random.choice(words)
@@ -48,13 +52,31 @@ pygame.display.set_caption("Viselica")  # заголовок окна
 
 
 # work with button
-# class Button():
-#     def __init__(self, x, y, w, h, txt,): #initialisation atributes x,y-coord w,h(px) and txt
-#         self.x = x
-#         self.y = y
-#     def active_button(self,):
+class Button:
+    def __init__(self, x, y, width, height):  # initialisation atributes """,txt"""
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.inactive_color = CYAN
+        self.active_color = WHITE
+        # self.txt = txt
 
+    def draw(self, x, y, action=None):
+        mouse = pygame.mouse.get_pos()
+        click = pygame.mouse.get_pressed()
+        if x < mouse[0] < x + self.width:
+            if y < mouse[1] < y + self.height:
+                pygame.draw.rect(sc, self.active_color, (x, y, self.width, self.height))
 
+                if click[0] == 1:
+                    pygame.time.delay(500)
+                    if action is not None:
+                        action()
+        else:
+            pygame.draw.rect(sc, self.inactive_color, (x, y, self.width, self.height))
+
+        # print_text(txt, x+10, y+10)
 
 
 sc.fill(GRAY)
@@ -77,12 +99,13 @@ for i in range(0, length_word):  # drow line from secret word
 
 def runGame():
     Game: bool = True
+    button_a = Button(400, 50, 25, 25)
     while Game:
         for i in pygame.event.get():
             if i.type == pygame.QUIT:  # or mistake_counter == 6  # END GAME
                 pygame.quit()
                 quit()
-
+        button_a.draw(350, 100, None)
         pygame.display.flip()
         output_image(mistake_counter)
         pygame.display.update()
