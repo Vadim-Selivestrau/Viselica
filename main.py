@@ -13,6 +13,7 @@ sc = pygame.display.set_mode((sc_width, sc_hight))
 WHITE = (255, 255, 255)
 GRAY = (80, 80, 80)
 CYAN = (13, 246, 205)
+RED = (255, 19, 9)
 
 
 # work with word
@@ -70,7 +71,8 @@ class Button:
                 pygame.draw.rect(sc, self.active_color, (x, y, self.width, self.height))
 
                 if click[0] == 1:
-                    pygame.time.delay(500)
+                    self.inactive_color = RED
+                    self.active_color = RED
                     if action is not None:
                         action()
         else:
