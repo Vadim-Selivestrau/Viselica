@@ -25,7 +25,7 @@ def choice_word(words):
 word = choice_word(words)
 length_word = len(word)
 
-mistake_counter = 6
+mistake_counter = 0
 
 # work with image
 icon = pygame.image.load('img\icon\pogonya.jpg')
@@ -101,16 +101,27 @@ for i in range(0, length_word):  # drow line from secret word
 
 def runGame():
     Game: bool = True
-    button_a = Button(400, 50, 25, 25)
+    button_a = Button(100, 50, 25, 25)
+    button_b = Button(450, 50, 25, 25)
+    button_c = Button(500, 50, 25, 25)
+    button_d = Button(550, 50, 25, 25)
+    button_e = Button(600, 50, 25, 25)
+    button_f = Button(650, 50, 25, 25)
     while Game:
         for i in pygame.event.get():
             if i.type == pygame.QUIT:  # or mistake_counter == 6  # END GAME
                 pygame.quit()
                 quit()
-        button_a.draw(350, 100, None)
+
         pygame.display.flip()
         output_image(mistake_counter)
         pygame.display.update()
+        button_a.draw(350, 100, None)
+        button_b.draw(400, 100, None)
+        button_c.draw(450, 100, None)
+        button_d.draw(500, 100, None)
+        button_e.draw(550, 100, None)
+        button_f.draw(600, 100, None)
 
 
 def output_image(counter):
